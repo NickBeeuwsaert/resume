@@ -1,0 +1,77 @@
+html, body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0.25in;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    height: 1px;
+    background: black;
+    border: 0;
+    margin-top: 0;
+}
+
+.article-header {
+    display: flex;
+    align-items: center;
+}
+.article-header > * {
+    flex: auto;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.resume-header {
+    display: flex;
+}
+
+.resume-header > * {
+    flex: auto;
+}
+
+.contact {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.job-highlights {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.job-highlights li {
+    border-left: 3px solid #aaa;
+    padding-left: 1em;
+    margin: 0.5em;
+}
+
+article {
+    margin-bottom: 0.25in;
+}
+
+section {
+    margin: 0.25in 0;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+}
+
+.icon-github:before {
+    content: url(../images/github.svg);
+}
+
+.loading span {
+    color: transparent;
+    background: green;
+}

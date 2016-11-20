@@ -1,0 +1,79 @@
+{
+    "basic": {
+        "name": "Nick Beeuwsaert",
+        "label": "Fullstack Developer",
+        "email": "john.doe@gmail.com",
+        "phone": "555-555-5555",
+        "website": "http://nick.beeuwsaert.me",
+        "profiles": [
+            {
+                "network": "github",
+                "username": "NickBeeuwsaert",
+                "url": "https://github.com/NickBeeuwsaert"
+            }
+        ]
+    },
+    "work": [
+        {
+            "company": "Group 3 Marketing",
+            "tech": [
+                "Ansible",
+                "Python",
+                "Flask",
+                "Pyramid",
+                "React",
+                "Babel",
+                "ES2015",
+                "Javascript",
+                "MySQL",
+                "SCSS",
+                "PostCSS",
+                "Javascript (ES2015)",
+                "SQLAlchemy",
+                "Unit Testing",
+                "Git"
+            ],
+            "position": "Fullstack Developer",
+            "start_date": "2015-07-17",
+            "end_date": "2016-09-23",
+            "summary": "Group 3 Marketing is a marketing agency that specializes in connecting it's clients to customers using data analytics.",
+            "highlights": [
+                "Lead development on a Python Flask microservice to import a users contacts into a form, which saved the company $500 a month, on average",
+                "Implemented version control using git for current and future projects",
+                "Used build tools such as Grunt/Gulp/Webpack to bundle frontend dependencies",
+                "Transpile frontend javascript from ES2015 to ES5 using Babel, which helped cut development time in half",
+                "Used SCSS and Bootstrap to upgrade look and feel of legacy sites"
+            ]
+        },
+        {
+            "company": "Promotion Management Center",
+            "position": "Fullstack Developer",
+            "start_date": "2013-09-01",
+            "end_date": "2015-06-20",
+            "tech": [
+                "CakePHP",
+                "PHP",
+                "MySQL",
+                "Amazon Web Services",
+                "Git",
+                "MongoDB"
+            ],
+            "summary": "PMCI provides fulfillment services and rebates to it's clients.",
+            "highlights": [
+                "Maintain legacy PHP applications",
+                "Rapidly develop new sites using CakePHP",
+                "Wrote applications that interacted with both MongoDB and MySQL",
+                "Develop flexible microservice for use on rebate forms",
+                "Develop nightly import scripts in Python"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Princeton High School",
+            "start_date": "2009",
+            "end_date": "2013",
+            "location": "Princeton, MN"
+        }
+    ]
+}
