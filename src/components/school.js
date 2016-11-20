@@ -1,13 +1,16 @@
 import { h } from 'preact';
 
 import { LOCALE } from '../config';
+import Time from './time';
 
 export default function School({
     institution, location,
     start_date, end_date
 }) {
-    start_date = new Date(start_date);
-    end_date = new Date(end_date);
+    let dateOptions = {
+        year: 'numeric',
+        timeZone: 'UTC'
+    };
 
     return <article>
         <div class="article-header">
@@ -16,13 +19,9 @@ export default function School({
                 <small><em>{location}</em></small>
             </div>
             <div class="align-right">
-                <h3>{start_date.toLocaleDateString(LOCALE, {
-                    year: 'numeric',
-                    timeZone: 'UTC'
-                })} &ndash; {end_date.toLocaleDateString(LOCALE, {
-                    year: 'numeric',
-                    timeZone: 'UTC'
-                })}</h3>
+                <h3>
+                    <Time datetime={start_date} locale={LOCALE} options={dateOptions}/> &ndash; <Time datetime={end_date} locale={LOCALE} options={dateOptions}/>
+                </h3>
             </div>
         </div>
     </article>;

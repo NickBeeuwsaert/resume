@@ -3,10 +3,7 @@ html, body {
     margin: 0.25in;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0;
-}
+h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
 
 hr {
     height: 1px;
@@ -15,63 +12,49 @@ hr {
     margin-top: 0;
 }
 
-.article-header {
-    display: flex;
-    align-items: center;
-}
-.article-header > * {
-    flex: auto;
-}
+.article-header, .resume-header { display: flex; }
 
-.align-right {
-    text-align: right;
-}
+.article-header { align-items: center; }
 
-.resume-header {
-    display: flex;
-}
+.article-header > *, .resume-header > * { flex: auto; }
 
-.resume-header > * {
-    flex: auto;
-}
+.align-right { text-align: right; }
 
-.contact {
+.contact, .job-highlights {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.job-highlights {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
+.contact { display: inline-block; text-align: left; }
 
 .job-highlights li {
     border-left: 3px solid #aaa;
-    padding-left: 1em;
+    padding-left: 0.5em;
     margin: 0.5em;
 }
 
-article {
-    margin-bottom: 0.25in;
-}
+article { margin-bottom: 0.25in; }
 
-section {
-    margin: 0.25in 0;
-}
+section { margin: 0.25in 0; }
 
 .icon {
-    width: 1em;
-    height: 1em;
+    width: 1.25em;
+    height: 1.25em;
     display: inline-block;
+    vertical-align: middle;
+    padding: 0 0.25em;
 }
 
-.icon-github:before {
-    content: url(../images/github.svg);
-}
 
-.loading span {
-    color: transparent;
-    background: green;
+/** I'd like to reduce the number of requests, by merging these into one SVG
+    But I CBB to make a sprite sheet now, and view support is terrible across browsers */
+.icon-github:before { content: url(../images/github.svg); }
+.icon-phone:before { content: url(../images/phone.svg); }
+.icon-internet:before { content: url(../images/internet.svg); }
+.icon-phone:before { content: url(../images/phone.svg); }
+.icon-email:before { content: url(../images/email_closed.svg); }
+
+@media print {
+    a { text-decoration: none; color: black; }
 }

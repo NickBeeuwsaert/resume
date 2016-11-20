@@ -1092,16 +1092,16 @@ function Header(ref) {
     var website = ref.website;
     var profiles = ref.profiles; if ( profiles === void 0 ) profiles = [];
 
-    return h( 'div', { class: "resume-header" },
+    return h( 'header', { class: "resume-header" },
         h( 'div', null,
             h( 'h1', null, name ),
             h( 'h2', null, label )
         ),
         h( 'div', { class: "align-right" },
             h( 'ul', { class: "contact" },
-                h( 'li', null, h( 'a', { href: ("tel:" + phone) }, phone) ),
-                h( 'li', null, h( 'a', { href: ("mailto:" + email) }, email) ),
-                h( 'li', null, h( 'a', { href: website }, website) ),
+                h( 'li', null, h( 'span', { class: 'icon icon-phone' }), h( 'a', { href: ("tel:" + phone) }, phone) ),
+                h( 'li', null, h( 'span', { class: 'icon icon-email' }), h( 'a', { href: ("mailto:" + email) }, email) ),
+                h( 'li', null, h( 'span', { class: 'icon icon-internet' }), h( 'a', { href: website }, website) ),
                 profiles.map(function (profile) { return h( 'li', null,
                     h( 'span', { class: ("icon icon-" + (profile.network)) }),  
                     h( 'a', { href: profile.url }, profile.username)
@@ -1116,6 +1116,15 @@ var LOCALE = ['xml:lang', 'lang'].reduce(
     undefined
 ) || 'en-US';
 
+function Time(ref) {
+    var datetime = ref.datetime;
+    var locale = ref.locale;
+    var options$$1 = ref.options; if ( options$$1 === void 0 ) options$$1 = {};
+
+    var date = new Date(datetime);
+    return h( 'time', { datetime: datetime }, date.toLocaleString(locale, options$$1))
+}
+
 function Job(ref) {
     var company = ref.company;
     var position = ref.position;
@@ -1124,8 +1133,7 @@ function Job(ref) {
     var summary = ref.summary;
     var highlights = ref.highlights;
 
-    start_date = new Date(start_date);
-    end_date = new Date(end_date);
+    var dateOptions = {year: 'numeric', month: 'long', timeZone: 'UTC'};
 
 
     return h( 'article', null,
@@ -1135,15 +1143,9 @@ function Job(ref) {
                 h( 'small', null, h( 'em', null, company ) )
             ),
             h( 'div', { class: "align-right" },
-                h( 'h3', null, start_date.toLocaleDateString(LOCALE, {
-                    year: 'numeric',
-                    month: 'long',
-                    timeZone: 'UTC'
-                }), " – ", end_date.toLocaleDateString(LOCALE, {
-                    year: 'numeric',
-                    month: 'long',
-                    timeZone: 'UTC'
-                }) )
+                h( 'h3', null,
+                    h( Time, { datetime: start_date, locale: LOCALE, options: dateOptions }), " – ", h( Time, { datetime: end_date, locale: LOCALE, options: dateOptions })
+                )
             )
         ),
         h( 'p', null, summary ),
@@ -1159,8 +1161,10 @@ function School(ref) {
     var start_date = ref.start_date;
     var end_date = ref.end_date;
 
-    start_date = new Date(start_date);
-    end_date = new Date(end_date);
+    var dateOptions = {
+        year: 'numeric',
+        timeZone: 'UTC'
+    };
 
     return h( 'article', null,
         h( 'div', { class: "article-header" },
@@ -1169,13 +1173,9 @@ function School(ref) {
                 h( 'small', null, h( 'em', null, location ) )
             ),
             h( 'div', { class: "align-right" },
-                h( 'h3', null, start_date.toLocaleDateString(LOCALE, {
-                    year: 'numeric',
-                    timeZone: 'UTC'
-                }), " – ", end_date.toLocaleDateString(LOCALE, {
-                    year: 'numeric',
-                    timeZone: 'UTC'
-                }) )
+                h( 'h3', null,
+                    h( Time, { datetime: start_date, locale: LOCALE, options: dateOptions }), " – ", h( Time, { datetime: end_date, locale: LOCALE, options: dateOptions })
+                )
             )
         )
     );
@@ -1198,7 +1198,7 @@ function Resume(ref) {
 }
 
 var basic = {"name":"Nick Beeuwsaert","label":"Fullstack Developer","email":"john.doe@gmail.com","phone":"555-555-5555","website":"http://nick.beeuwsaert.me","profiles":[{"network":"github","username":"NickBeeuwsaert","url":"https://github.com/NickBeeuwsaert"}]};
-var work = [{"company":"Group 3 Marketing","tech":["Ansible","Python","Flask","Pyramid","React","Babel","ES2015","Javascript","MySQL","SCSS","PostCSS","Javascript (ES2015)","SQLAlchemy","Unit Testing","Git"],"position":"Fullstack Developer","start_date":"2015-07-17","end_date":"2016-09-23","summary":"Group 3 Marketing is a marketing agency that specializes in connecting it's clients to customers using data analytics.","highlights":["Lead development on a Python Flask microservice to import a users contacts into a form, which saved the company $500 a month, on average","Implemented version control using git for current and future projects","Used build tools such as Grunt/Gulp/Webpack to bundle frontend dependencies","Transpile frontend javascript from ES2015 to ES5 using Babel, which helped cut development time in half","Used SCSS and Bootstrap to upgrade look and feel of legacy sites"]},{"company":"Promotion Management Center","position":"Fullstack Developer","start_date":"2013-09-01","end_date":"2015-06-20","tech":["CakePHP","PHP","MySQL","Amazon Web Services","Git","MongoDB"],"summary":"PMCI provides fulfillment services and rebates to it's clients.","highlights":["Maintain legacy PHP applications","Rapidly develop new sites using CakePHP","Wrote applications that interacted with both MongoDB and MySQL","Develop flexible microservice for use on rebate forms","Develop nightly import scripts in Python"]}];
+var work = [{"company":"Group 3 Marketing","tech":["Ansible","Python","Flask","Pyramid","React","Babel","ES2015","Javascript","MySQL","SCSS","PostCSS","Javascript (ES2015)","SQLAlchemy","Unit Testing","Git"],"position":"Fullstack Developer","start_date":"2015-07","end_date":"2016-09","summary":"Group 3 Marketing is a marketing agency that specializes in connecting it's clients to customers using data analytics.","highlights":["Lead development on a Python Flask microservice to import a users contacts into a form, which saved the company $500 a month, on average","Implemented version control using git for current and future projects","Used build tools such as Grunt/Gulp/Webpack to bundle frontend dependencies","Transpile frontend javascript from ES2015 to ES5 using Babel, which helped cut development time in half","Used SCSS and Bootstrap to upgrade look and feel of legacy sites"]},{"company":"Promotion Management Center","position":"Fullstack Developer","start_date":"2013-09","end_date":"2015-06","tech":["CakePHP","PHP","MySQL","Amazon Web Services","Git","MongoDB"],"summary":"PMCI provides fulfillment services and rebates to it's clients.","highlights":["Maintain legacy PHP applications","Rapidly develop new sites using CakePHP","Wrote applications that interacted with both MongoDB and MySQL","Develop flexible microservice for use on rebate forms","Develop nightly import scripts in Python"]}];
 var education = [{"institution":"Princeton High School","start_date":"2009","end_date":"2013","location":"Princeton, MN"}];
 var resume = {
 	basic: basic,

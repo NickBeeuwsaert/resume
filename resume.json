@@ -34,8 +34,8 @@
                 "Git"
             ],
             "position": "Fullstack Developer",
-            "start_date": "2015-07-17",
-            "end_date": "2016-09-23",
+            "start_date": "2015-07",
+            "end_date": "2016-09",
             "summary": "Group 3 Marketing is a marketing agency that specializes in connecting it's clients to customers using data analytics.",
             "highlights": [
                 "Lead development on a Python Flask microservice to import a users contacts into a form, which saved the company $500 a month, on average",
@@ -48,8 +48,8 @@
         {
             "company": "Promotion Management Center",
             "position": "Fullstack Developer",
-            "start_date": "2013-09-01",
-            "end_date": "2015-06-20",
+            "start_date": "2013-09",
+            "end_date": "2015-06",
             "tech": [
                 "CakePHP",
                 "PHP",
