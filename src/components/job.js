@@ -17,7 +17,7 @@ export default function Job({
                 <h3>{position}</h3>
                 <small><em>{company}</em></small>
             </div>
-            <div class="align-right">
+            <div class="aside">
                 <h3>
                     <Time datetime={start_date} locale={LOCALE} options={dateOptions}/> &ndash; <Time datetime={end_date} locale={LOCALE} options={dateOptions}/>
                 </h3>

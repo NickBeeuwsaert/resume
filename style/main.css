@@ -1,6 +1,10 @@
 html, body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    margin: 0.25in;
+    font-size: 16px;
+}
+
+body {
+    margin: 0.5in;
 }
 
 h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
@@ -18,7 +22,7 @@ hr {
 
 .article-header > *, .resume-header > * { flex: auto; }
 
-.align-right { text-align: right; }
+.aside { text-align: right; }
 
 .contact, .job-highlights {
     list-style-type: none;
@@ -59,4 +63,10 @@ section { margin: 0.25in 0; }
 
 @media print {
     a { text-decoration: none; color: black; }
+}
+
+@media (max-width: 425px) {
+    body { margin: 0.5em; }
+    .article-header, .resume-header { display: block; }
+    .aside { text-align: left; }
 }

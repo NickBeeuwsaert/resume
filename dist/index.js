@@ -1097,7 +1097,7 @@ function Header(ref) {
             h( 'h1', null, name ),
             h( 'h2', null, label )
         ),
-        h( 'div', { class: "align-right" },
+        h( 'div', { class: "aside" },
             h( 'ul', { class: "contact" },
                 h( 'li', null, h( 'span', { class: 'icon icon-phone' }), h( 'a', { href: ("tel:" + phone) }, phone) ),
                 h( 'li', null, h( 'span', { class: 'icon icon-email' }), h( 'a', { href: ("mailto:" + email) }, email) ),
@@ -1142,7 +1142,7 @@ function Job(ref) {
                 h( 'h3', null, position ),
                 h( 'small', null, h( 'em', null, company ) )
             ),
-            h( 'div', { class: "align-right" },
+            h( 'div', { class: "aside" },
                 h( 'h3', null,
                     h( Time, { datetime: start_date, locale: LOCALE, options: dateOptions }), " – ", h( Time, { datetime: end_date, locale: LOCALE, options: dateOptions })
                 )
@@ -1172,7 +1172,7 @@ function School(ref) {
                 h( 'h3', null, institution ),
                 h( 'small', null, h( 'em', null, location ) )
             ),
-            h( 'div', { class: "align-right" },
+            h( 'div', { class: "aside" },
                 h( 'h3', null,
                     h( Time, { datetime: start_date, locale: LOCALE, options: dateOptions }), " – ", h( Time, { datetime: end_date, locale: LOCALE, options: dateOptions })
                 )
