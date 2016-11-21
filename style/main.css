@@ -39,21 +39,23 @@ article { margin-bottom: 0.25in; }
 section { margin: 0.25in 0; }
 
 .icon {
-    width: 1.25em;
-    height: 1.25em;
+    font-size: 125%;
+    width: 1em;
+    height: 1em;
     display: inline-block;
     vertical-align: middle;
-    padding: 0 0.25em;
+    margin: 0 0.25em;
+    background-size: 4em 4em;
+    background-image: url(../images/sprites.svg);
 }
 
 
 /** I'd like to reduce the number of requests, by merging these into one SVG
     But I CBB to make a sprite sheet now, and view support is terrible across browsers */
-.icon-github:before { content: url(../images/github.svg); }
-.icon-phone:before { content: url(../images/phone.svg); }
-.icon-internet:before { content: url(../images/internet.svg); }
-.icon-phone:before { content: url(../images/phone.svg); }
-.icon-email:before { content: url(../images/email_closed.svg); }
+.icon-github { background-position: 0 0; }
+.icon-phone { background-position: -1em 0; }
+.icon-internet { background-position: -1em -1em; }
+.icon-email { background-position: -1em -2em; }
 
 @media print {
     a { text-decoration: none; color: black; }
