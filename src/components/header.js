@@ -1,18 +1,28 @@
 import { h } from 'preact';
 
+let Icon = ({type}) => <span className={`icon icon-${type}`}></span>;
+
 export default function Header({name, label, phone, email, website, profiles=[]}) {
-    return <header class="resume-header">
+    return <header className="resume-header">
         <div>
             <h1>{name}</h1>
             <h2>{label}</h2>
         </div>
-        <div class="aside">
-            <ul class="contact">
-                <li><span class='icon icon-phone'></span><a href={`tel:${phone}`}>{phone}</a></li>
-                <li><span class='icon icon-email'></span><a href={`mailto:${email}`}>{email}</a></li>
-                <li><span class='icon icon-internet'></span><a href={website}>{website}</a></li>
+        <div className="aside">
+            <ul className="contact">
+                <li>
+                    <Icon type="phone"/>
+                    <a className="censored" title="Censored for my privacy" href={`tel:${phone}`}>{phone}</a>
+                </li>
+                <li>
+                    <Icon type="email"/>
+                    <a className="censored" title="Censored for my privacy" href={`mailto:${email}`}>{email}</a>
+                </li>
+                <li>
+                    <Icon type="internet"/>
+                    <a href={website}>{website}</a></li>
                 {profiles.map(profile => <li>
-                    <span class={`icon icon-${profile.network}`}></span> 
+                    <Icon type={profile.network}/>
                     <a href={profile.url}>{profile.username}</a>
                 </li>)}
             </ul>

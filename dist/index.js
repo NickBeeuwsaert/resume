@@ -186,13 +186,6 @@ var NON_DIMENSION_PROPS = {
 // DOM event types that do not bubble and should be attached via useCapture
 var NON_BUBBLING_EVENTS = { blur:1, error:1, focus:1, load:1, resize:1, scroll:1 };
 
-/** Create an Event handler function that sets a given state property.
- *	@param {Component} component	The component whose state should be updated
- *	@param {string} key				A dot-notated key path to update in the component's state
- *	@param {string} eventPath		A dot-notated key path to the value that should be retrieved from the Event or component
- *	@returns {function} linkedStateHandler
- *	@private
- */
 function createLinkedState(component, key, eventPath) {
 	var path = key.split('.');
 	return function(e) {
@@ -209,9 +202,6 @@ function createLinkedState(component, key, eventPath) {
 	};
 }
 
-/** Managed queue of dirty components to be re-rendered */
-
-// items/itemsOffline swap on each rerender() call (just a simple pool technique)
 var items = [];
 
 function enqueueRender(component) {
@@ -229,12 +219,6 @@ function rerender() {
 	}
 }
 
-/** Check if a VNode is a reference to a stateless functional component.
- *	A function component is represented as a VNode whose `nodeName` property is a reference to a function.
- *	If that function is not a Component (ie, has no `.render()` method on a prototype), it is considered a stateless functional component.
- *	@param {VNode} vnode	A VNode
- *	@private
- */
 function isFunctionalComponent(vnode) {
 	var nodeName = vnode && vnode.nodeName;
 	return nodeName && isFunction(nodeName) && !(nodeName.prototype && nodeName.prototype.render);
@@ -250,11 +234,6 @@ function buildFunctionalComponent(vnode, context) {
 	return vnode.nodeName(getNodeProps(vnode), context || EMPTY);
 }
 
-/** Check if two nodes are equivalent.
- *	@param {Element} node
- *	@param {VNode} vnode
- *	@private
- */
 function isSameNodeType(node, vnode) {
 	if (isString(vnode)) {
 		return node instanceof Text;
@@ -296,7 +275,6 @@ function getNodeProps(vnode) {
 	return props;
 }
 
-/** Removes a given DOM Node from its parent. */
 function removeNode(node) {
 	var p = node.parentNode;
 	if (p) { p.removeChild(node); }
@@ -389,8 +367,6 @@ function eventProxy(e) {
 	return this._listeners[e.type](options.event && options.event(e) || e);
 }
 
-/** DOM node pool, keyed on nodeName. */
-
 var nodes = {};
 
 function collectNode(node) {
@@ -412,7 +388,6 @@ function createNode(nodeName, isSvg) {
 	return node;
 }
 
-/** Diff recursion count, used to track the end of the diff cycle. */
 var mounts = [];
 
 /** Diff recursion count, used to track the end of the diff cycle. */
@@ -656,10 +631,6 @@ function diffAttributes(dom, attrs, old) {
 	}
 }
 
-/** Retains a pool of Components for re-use, keyed on component name.
- *	Note: since component names are not unique or even necessarily available, these are primarily a form of sharding.
- *	@private
- */
 var components = {};
 
 
@@ -687,12 +658,6 @@ function createComponent(Ctor, props, context) {
 	return inst;
 }
 
-/** Set a component's `props` (generally derived from JSX attributes).
- *	@param {Object} props
- *	@param {Object} [opts]
- *	@param {boolean} [opts.renderSync=false]	If `true` and {@link options.syncComponentUpdates} is `true`, triggers synchronous rendering.
- *	@param {boolean} [opts.render=true]			If `false`, no render will be triggered.
- */
 function setComponentProps(component, props, opts, context, mountAll) {
 	if (component._disable) { return; }
 	component._disable = true;
@@ -957,16 +922,6 @@ function unmountComponent(component, remove) {
 	if (component.componentDidUnmount) { component.componentDidUnmount(); }
 }
 
-/** Base Component class, for he ES6 Class method of creating Components
- *	@public
- *
- *	@example
- *	class MyFoo extends Component {
- *		render(props, state) {
- *			return <div />;
- *		}
- *	}
- */
 function Component(props, context) {
 	/** @private */
 	this._dirty = true;
@@ -1054,21 +1009,6 @@ extend(Component.prototype, {
 
 });
 
-/** Render JSX into a `parent` Element.
- *	@param {VNode} vnode		A (JSX) VNode to render
- *	@param {Element} parent		DOM element to render into
- *	@param {Element} [merge]	Attempt to re-use an existing DOM tree rooted at `merge`
- *	@public
- *
- *	@example
- *	// render a div into <body>:
- *	render(<div id="hello">hello!</div>, document.body);
- *
- *	@example
- *	// render a "Thing" component into #foo:
- *	const Thing = ({ name }) => <span>{ name }</span>;
- *	render(<Thing name="one" />, document.querySelector('#foo'));
- */
 function render$1(vnode, parent, merge) {
 	return diff(merge, vnode, {}, false, parent);
 }
@@ -1084,6 +1024,12 @@ function Section(ref) {
     );
 }
 
+var Icon = function (ref) {
+    var type = ref.type;
+
+    return h( 'span', { className: ("icon icon-" + type) });
+};
+
 function Header(ref) {
     var name = ref.name;
     var label = ref.label;
@@ -1092,18 +1038,26 @@ function Header(ref) {
     var website = ref.website;
     var profiles = ref.profiles; if ( profiles === void 0 ) profiles = [];
 
-    return h( 'header', { class: "resume-header" },
+    return h( 'header', { className: "resume-header" },
         h( 'div', null,
             h( 'h1', null, name ),
             h( 'h2', null, label )
         ),
-        h( 'div', { class: "aside" },
-            h( 'ul', { class: "contact" },
-                h( 'li', null, h( 'span', { class: 'icon icon-phone' }), h( 'a', { href: ("tel:" + phone) }, phone) ),
-                h( 'li', null, h( 'span', { class: 'icon icon-email' }), h( 'a', { href: ("mailto:" + email) }, email) ),
-                h( 'li', null, h( 'span', { class: 'icon icon-internet' }), h( 'a', { href: website }, website) ),
+        h( 'div', { className: "aside" },
+            h( 'ul', { className: "contact" },
+                h( 'li', null,
+                    h( Icon, { type: "phone" }),
+                    h( 'a', { className: "censored", title: "Censored for my privacy", href: ("tel:" + phone) }, phone)
+                ),
+                h( 'li', null,
+                    h( Icon, { type: "email" }),
+                    h( 'a', { className: "censored", title: "Censored for my privacy", href: ("mailto:" + email) }, email)
+                ),
+                h( 'li', null,
+                    h( Icon, { type: "internet" }),
+                    h( 'a', { href: website }, website) ),
                 profiles.map(function (profile) { return h( 'li', null,
-                    h( 'span', { class: ("icon icon-" + (profile.network)) }),  
+                    h( Icon, { type: profile.network }),
                     h( 'a', { href: profile.url }, profile.username)
                 ); })
             )
@@ -1137,19 +1091,19 @@ function Job(ref) {
 
 
     return h( 'article', null,
-        h( 'div', { class: "article-header" },
+        h( 'div', { className: "article-header" },
             h( 'div', null,
                 h( 'h3', null, position ),
                 h( 'small', null, h( 'em', null, company ) )
             ),
-            h( 'div', { class: "aside" },
+            h( 'div', { className: "aside" },
                 h( 'h3', null,
                     h( Time, { datetime: start_date, locale: LOCALE, options: dateOptions }), " – ", h( Time, { datetime: end_date, locale: LOCALE, options: dateOptions })
                 )
             )
         ),
         h( 'p', null, summary ),
-        h( 'ul', { class: "job-highlights" },
+        h( 'ul', { className: "job-highlights" },
             highlights.map(function (highlight) { return h( 'li', null, highlight ); })
         )
     );
@@ -1167,12 +1121,12 @@ function School(ref) {
     };
 
     return h( 'article', null,
-        h( 'div', { class: "article-header" },
+        h( 'div', { className: "article-header" },
             h( 'div', null,
                 h( 'h3', null, institution ),
                 h( 'small', null, h( 'em', null, location ) )
             ),
-            h( 'div', { class: "aside" },
+            h( 'div', { className: "aside" },
                 h( 'h3', null,
                     h( Time, { datetime: start_date, locale: LOCALE, options: dateOptions }), " – ", h( Time, { datetime: end_date, locale: LOCALE, options: dateOptions })
                 )
@@ -1197,8 +1151,8 @@ function Resume(ref) {
     );
 }
 
-var basic = {"name":"Nick Beeuwsaert","label":"Fullstack Developer","email":"john.doe@gmail.com","phone":"555-555-5555","website":"http://nick.beeuwsaert.me","profiles":[{"network":"github","username":"NickBeeuwsaert","url":"https://github.com/NickBeeuwsaert"}]};
-var work = [{"company":"Group 3 Marketing","tech":["Ansible","Python","Flask","Pyramid","React","Babel","ES2015","Javascript","MySQL","SCSS","PostCSS","Javascript (ES2015)","SQLAlchemy","Unit Testing","Git"],"position":"Fullstack Developer","start_date":"2015-07","end_date":"2016-09","summary":"Group 3 Marketing is a marketing agency that specializes in connecting it's clients to customers using data analytics.","highlights":["Lead development on a Python Flask microservice to import a users contacts into a form, which saved the company $500 a month, on average","Implemented version control using git for current and future projects","Used build tools such as Grunt/Gulp/Webpack to bundle frontend dependencies","Transpile frontend javascript from ES2015 to ES5 using Babel, which helped cut development time in half","Used SCSS and Bootstrap to upgrade look and feel of legacy sites"]},{"company":"Promotion Management Center","position":"Fullstack Developer","start_date":"2013-09","end_date":"2015-06","tech":["CakePHP","PHP","MySQL","Amazon Web Services","Git","MongoDB"],"summary":"PMCI provides fulfillment services and rebates to it's clients.","highlights":["Maintain legacy PHP applications","Rapidly develop new sites using CakePHP","Wrote applications that interacted with both MongoDB and MySQL","Develop flexible microservice for use on rebate forms","Develop nightly import scripts in Python"]}];
+var basic = {"name":"Nick Beeuwsaert","label":"Fullstack Developer","email":"placeholder@example.com","phone":"555-555-5555","website":"http://nick.beeuwsaert.me","profiles":[{"network":"github","username":"NickBeeuwsaert","url":"https://github.com/NickBeeuwsaert"}]};
+var work = [{"company":"Group 3 Marketing","tech":["Ansible","Python","Flask","Pyramid","React","Babel","ES2015","Javascript","MySQL","SCSS","PostCSS","Javascript (ES2015)","SQLAlchemy","Unit Testing","Git"],"position":"Fullstack Developer","start_date":"2015-07","end_date":"2016-09","summary":"Group 3 Marketing was a marketing agency that specializes in connecting its clients to customers using data analytics.","highlights":["Lead development on a Python Flask microservice to import a users contacts into a form, which saved the company $500 a month, on average","Implemented version control using git for current and future projects","Used build tools such as Grunt/Gulp/Webpack to bundle frontend dependencies","Transpile frontend javascript from ES2015 to ES5 using Babel, which helped cut development time in half","Used SCSS and Bootstrap to upgrade look and feel of legacy sites"]},{"company":"Promotion Management Center","position":"Fullstack Developer","start_date":"2013-09","end_date":"2015-06","tech":["CakePHP","PHP","MySQL","Amazon Web Services","Git","MongoDB"],"summary":"PMCI provides fulfillment services and rebates to it's clients.","highlights":["Maintain legacy PHP applications","Rapidly develop new sites using CakePHP","Wrote applications that interacted with both MongoDB and MySQL","Develop flexible microservice for use on rebate forms","Develop nightly import scripts in Python"]}];
 var education = [{"institution":"Princeton High School","start_date":"2009","end_date":"2013","location":"Princeton, MN"}];
 var resume = {
 	basic: basic,

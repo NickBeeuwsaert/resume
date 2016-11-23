@@ -42,6 +42,8 @@ article { margin-bottom: 0.25in; }
 
 section { margin: 0.25in 0; }
 
+.censored { filter: blur(5px); }
+
 .icon {
     font-size: 125%;
     width: 1em;

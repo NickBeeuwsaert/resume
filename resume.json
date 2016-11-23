@@ -2,7 +2,7 @@
     "basic": {
         "name": "Nick Beeuwsaert",
         "label": "Fullstack Developer",
-        "email": "john.doe@gmail.com",
+        "email": "placeholder@example.com",
         "phone": "555-555-5555",
         "website": "http://nick.beeuwsaert.me",
         "profiles": [
@@ -36,7 +36,7 @@
             "position": "Fullstack Developer",
             "start_date": "2015-07",
             "end_date": "2016-09",
-            "summary": "Group 3 Marketing is a marketing agency that specializes in connecting it's clients to customers using data analytics.",
+            "summary": "Group 3 Marketing was a marketing agency that specializes in connecting its clients to customers using data analytics.",
             "highlights": [
                 "Lead development on a Python Flask microservice to import a users contacts into a form, which saved the company $500 a month, on average",
                 "Implemented version control using git for current and future projects",
